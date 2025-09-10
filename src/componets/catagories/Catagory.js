@@ -1,17 +1,21 @@
+import { useState } from "react";
 import People from "./People"
-export default function Catagory(){
+export default function Catagory({setSelected}){
+    
+    const catagories = ["Hammasi", "Jadid adabiyoti", "Sovet davri","Mustaqillik", "Temuriylar davri"];
+    
+    console.log(catagories);
+    
     return(
         <div className="container">
             <div className="catagory">
                 <h2 className="cata-title">Asosiy kategoriyalar</h2>
                 <div className="catagories">
-                    <span className="catagories-span">Temuriylar davri</span>
-                    <span className="catagories-span">Jadid adabiyoti</span>
-                    <span className="catagories-span">Sovet davri</span>
-                    <span className="catagories-span">Mustaqillik davri</span>
-                </div>
-                <People/>
-            </div>
+                {catagories.map((c)=>(
+                    <button className="catagories-span" onClick={()=>setSelected(c)}>{c}</button>
+                ))}
+            
+            </div></div>
         </div>
     )
 }

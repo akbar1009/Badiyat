@@ -21,7 +21,7 @@ function App() {
           <Route path='/author' element={<><Nav/><Author/></>}/>
           <Route path='/author/:id' element={<><Nav/><Author/></>}/>
           <Route path='/author/:id' element={<><Nav/><Author/></>}/>
-          <Route path='/page' element={<><Nav/><Page/></>}/>
+          <Route path='/books/:id' element={<><Nav/><Page/></>}/>
         </Routes>
     </div>
       </Router>

@@ -1,13 +1,12 @@
 import Catagory from "../componets/catagories/Catagory";
-import Hero from "../componets/Hero";
+import People from "../componets/catagories/People";
 import Nav from "../componets/Nav";
 
 export default function Home(){
     return(
         <div>
             <Nav/>
-            <Hero/>
-            <Catagory/>
+            <People/>
         </div>
     )
 }

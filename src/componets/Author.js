@@ -3,7 +3,7 @@ import ijod from '../imgs/ijod.svg'
 import book1 from '../imgs/book1.png'
 import book2 from '../imgs/book2.png'
 import book3 from '../imgs/book3.png'
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 export default function Author(){
     const {id} = useParams();
 
@@ -131,7 +131,11 @@ export default function Author(){
     if(!person){
       return <h1>Muallif topilmadi!</h1>
     } else {
-
+        const boooks = [
+            {id:1,img:book1,text:"Dunyoning ishlari"},
+            {id:2,img:book2,text:"Ikki eshik orasi"},
+            {id:3,img:book3,text:"Tushda kechgan umrlar"},
+        ]
  return(
         <div className="container">
             <div className="author">
@@ -168,18 +172,13 @@ export default function Author(){
                     <div className="author-right-asarlar">
                         <h4 className="asar-h4">Asarlari</h4>
                         <ul className="asar-ul">
-                            <li className="asar-li">
-                                <img src={person.book1}/>
-                                <p className="asar-text">{person.bookText1}</p>
-                            </li>
-                            <li className="asar-li">
-                                <img src={person.book2}/>
-                                <p className="asar-text">{person.bookText2}</p>
-                            </li>
-                            <li className="asar-li">
-                                <img width={165} height={246} src={person.book3}/>
-                                <p className="asar-text">{person.bookText3}</p>
-                            </li>
+                            {boooks.map((book) =>(
+                            <Link to={`/books/${book.id}`}> <li className="asar-li">
+                                <img width={165} height={246} src={book.img}/>
+                                <p className="asar-text">{book.text}</p>
+                            </li></Link>
+
+                            ))}
                         </ul>
                     </div>
                 </div>

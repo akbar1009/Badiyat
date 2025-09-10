@@ -13,24 +13,39 @@ import img10 from '../../imgs/behbudiy.png'
 import img11 from '../../imgs/hoji.png'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import Hero from '../Hero'
+import Catagory from './Catagory'
 export default function People(){
     const [autors] = useState([
-        {id:1,img:img1,name:"Abdulla Avloniy",strong:"1878-1934" },
-        {id:2,img:img2,name:"Nusrat Rahmat",strong:"1878-1934" },
-        {id:3,img:img3,name:"Rahmonberdi Madazimov",strong:"1878-1934" },
-        {id:4,img:img4,name:"Hamza Hakimzoda Niyoziy",strong:"1878-1934" },
-        {id:5,img:img5,name:"Abdulhamid Cho'lpon",strong:"1878-1934" },
-        {id:6,img:img6,name:"Abdurauf Fitrat",strong:"1878-1934" },
-        {id:7,img:img7,name:"Abdulmajid Qodiriy",strong:"1878-1934" },
-        {id:8,img:img8,name:"Munavvarqori Abdurashidxonov",strong:"1878-1934" },
-        {id:9,img:img9,name:"Abdulla Qodiriy",strong:"1878-1934" },
-        {id:10,img:img10,name:"Mahmuxo’ja Behbudiy",strong:"1878-1934" },
-        {id:11,img:img11,name:"Hoji Muin",strong:"1878-1934" },
+        {id:1,img:img1,name:"Abdulla Avloniy",strong:"1878-1934",catagory:"Jadid adabiyoti" },
+        {id:2,img:img2,name:"Nusrat Rahmat",strong:"1878-1934", catagory:"Mustaqillik" },
+        {id:3,img:img3,name:"Rahmonberdi Madazimov",strong:"1878-1934", catagory:"Jadid adabiyoti" },
+        {id:4,img:img4,name:"Hamza Hakimzoda Niyoziy",strong:"1878-1934", catagory:"Jadid adabiyoti" },
+        {id:5,img:img5,name:"Abdulhamid Cho'lpon",strong:"1878-1934", catagory:"Jadid adabiyoti"},
+        {id:6,img:img6,name:"Abdurauf Fitrat",strong:"1878-1934",catagory:"Jadid adabiyoti" },
+        {id:7,img:img7,name:"Abdulmajid Qodiriy",strong:"1878-1934", catagory:"Sovet davri"},
+        {id:8,img:img8,name:"Munavvarqori Abdurashidxonov",strong:"1878-1934", catagory:"Mustaqillik" },
+        {id:9,img:img9,name:"Abdulla Qodiriy",strong:"1878-1934" , catagory:"Jadid adabiyoti"},
+        {id:10,img:img10,name:"Mahmuxo’ja Behbudiy",strong:"1878-1934",catagory:"Jadid adabiyoti" },
+        {id:11,img:img11,name:"Hoji Muin",strong:"1878-1934", catagory:"Jadid adabiyoti" },
     ])
+
+    const [searchTerm, setSearchTerm] = useState('');
+    const [selectedCatagory,setSelectedCatagory] = useState('Hammasi')
+    const filteredAutors = autors.filter(autor => {
+        const matchesSearch = autor.name.toLowerCase().includes(searchTerm.toLowerCase());
+        const matchesCatagory = selectedCatagory === "Hammasi" ?{autors}:selectedCatagory ===autor.catagory
+        return matchesSearch && matchesCatagory;
+    });
+
     return(
         <div>
-            <ul className="people-list">
-                {autors.map((autor)=>(
+            <Hero qiymat={searchTerm} setQiymat={setSearchTerm}  />
+            <Catagory setSelected={setSelectedCatagory} />
+
+
+            <ul className="people-list container">
+                {filteredAutors.map((autor)=>(
                 <>
                 <Link to={`/author/${autor.id}`}>
                 <li className="people-item">

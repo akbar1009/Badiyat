@@ -1,6 +1,5 @@
+import { Link } from 'react-router-dom';
 import logos from '../imgs/Badiiyat.svg'
-import face from '../imgs/Bashara.png'
-import vector from '../imgs/Vector 1.svg'
 import './Style.css';
 export default function Nav(){
     return (
@@ -26,10 +25,10 @@ export default function Nav(){
                         <a className='nav-item' href='/'>Forum</a>
                     </li>
                 </ul>
-                <a className='a'>
-                    <img src={face}/>
-                    <img src={vector}/>
-                </a>
+                <div className='a'>
+                    <Link className='signup' to={"/signup"}>Sign up</Link>
+                    <Link className='signin' to={"/signin"}>Sign in</Link>
+                </div>
             </div>
         </div>
     )
